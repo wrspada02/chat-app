@@ -1,8 +1,9 @@
 import 'tailwindcss/tailwind.css';
-import { LoginButton } from "./components/login-button";
+import { Login } from './screens/login';
+import { Room } from './screens/room';
 
 export function App() {
     return (
-        <LoginButton loginMode="google" />
+        <Login />
     );
 }
