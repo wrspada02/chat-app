@@ -3,13 +3,19 @@ import { LoginButton } from "../../components/login-button";
 export function Login() {
     return (
         <main className="bg-[#785BD7] min-w-[100vw] min-h-[100vh] flex justify-center items-center">
-            <section className="desktop:bg-[#CCCCCC] flex flex-col items-center 
-                justify-evenly desktop:gap-40 desktop:px-40 desktop:py-5 desktop:rounded-md">
+            <section className="flex flex-col items-center justify-evenly 
+                desktop:gap-40 desktop:bg-[#CCCCCC] desktop:px-40 desktop:py-5 desktop:rounded-md
+                mobile:gap-20">
                 <div>
-                    <h1 className="text-[90px] text-center text-[#883995] font-['Sarpanch'] drop-shadow-2xl mobile:text-white">Chat App</h1>
-                    <h2 className="text-[75px] text-center font-['Sarpanch'] box-border">Sign In</h2>
+                    <h1 className=" text-center drop-shadow-lg font-['Sarpanch']
+                        desktop:text-8xl desktop:text-[#883995] 
+                        mobile:text-5xl mobile:text-white">Chat App</h1>
+                    <h2 className="text-center font-['Sarpanch'] drop-shadow-lg
+                        desktop:text-7xl
+                        mobile:text-4xl">Sign In</h2>
                 </div>
-                <div className="flex desktop:flex-col desktop:gap-10">
+                <hr className="desktop:hidden mobile:block mobile:w-full mobile:bg-[#CCCCCC] mobile:h-1" />
+                <div className="flex desktop:flex-col desktop:gap-10 mobile:gap-8">
                     <LoginButton loginMode="github" />
                     <LoginButton loginMode="google" />
                 </div>
