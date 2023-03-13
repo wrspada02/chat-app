@@ -1,5 +1,5 @@
 import { useCallback, useState } from "react";
-import { Modal } from "../group-members";
+import { Modal } from "../modal";
 
 export function GroupMembersIcon() {
     const [isGroupMembersModalActive, setIsGroupMembersModalActive] 

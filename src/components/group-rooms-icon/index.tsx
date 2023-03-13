@@ -1,6 +1,6 @@
 import { useCallback, useState } from "react";
 import HamburgerMenuIcon from "../../assets/hamburger_icon.svg";
-import { Modal } from "../group-members";
+import { Modal } from "../modal";
 import { GroupRoomProps } from "./@types";
 
 export function GroupRoomsIcon({ style }: GroupRoomProps) {
