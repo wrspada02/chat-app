@@ -4,6 +4,6 @@ import { Room } from './screens/room';
 
 export function App() {
     return (
-        <Room />
+        <Login />
     );
 }
