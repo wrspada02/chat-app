@@ -1,4 +1,4 @@
-Front-End constructed to be the interface to the Chat App;
+Front-End constructed for being the interface to the Chat App;
 
 Technologies: React.js, Typescript and Tailwind css <br>
 Figma template link: https://www.figma.com/file/HTcXilXHbeH18DkQNBuu3s/Chat-App?type=design&node-id=0-1&t=vN9wZIldR6JN28CX-0
