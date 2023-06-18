@@ -2,7 +2,7 @@ Front-End constructed to be the interface to the Chat App;
 
 Technologies: React.js, Typescript and Tailwind css
 
-Desktop - Login page:
+Desktop - Login page
 ![image](https://github.com/wrspada02/chat-app/assets/90157791/f99b4580-1786-4e4a-a591-e852fa82d046)
 
 Desktop - Room page
