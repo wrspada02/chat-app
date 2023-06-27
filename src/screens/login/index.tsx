@@ -2,7 +2,7 @@ import { GroupMembersIcon } from "../../components/group-members-icon";
 import { GroupMessage } from "../../components/group-message";
 import { LoginButton } from "../../components/login-button";
 
-export function Login() {
+export function Login() {    
     return (
         <main className="bg-[#785BD7] min-w-[100vw] min-h-[100vh]">
             <article className="desktop:w-[500px] tablet:w-[350px] tablet:block absolute left-10 top-32 hover:opacity-[0.7] transition-all mobile:hidden">
