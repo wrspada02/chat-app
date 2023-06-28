@@ -7,7 +7,7 @@ export function Login() {
       
     return (
         <main className="bg-[#785BD7] min-w-[100vw] min-h-[100vh]">
-            <article className="desktop:w-[500px] tablet:w-[350px] tablet:block absolute left-10 top-32 hover:opacity-[0.7] transition-all mobile:hidden">
+            <article className="desktop:w-[500px] tablet:w-[350px] tablet:block absolute left-10 top-32 hover:opacity-[0.7] transition mobile:hidden">
                 <header className="h-[50px] bg-[#D9D9D9] flex items-center justify-between p-2">
                     <h2 className="text-xl h-max">College Group</h2>
                     <GroupMembersIcon isButtonClickable={false} />
