@@ -6,7 +6,7 @@ import { GroupRoomsIcon } from "../../components/group-rooms-icon";
 
 export function Room() {
     return(
-        <main className="flex min-h-screen min-w-screen">
+        <main className="flex min-h-screen min-w-screen animate-opacity">
             <Sidebar style="tablet:min-h-full tablet:min-w-[20vw] mobile:hidden desktop:block" />
             <section className="min-w-min flex-1 flex flex-col">
                 <header className="bg-[#FCFCFC] flex items-center justify-between p-5">
