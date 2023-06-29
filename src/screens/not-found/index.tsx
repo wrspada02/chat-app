@@ -10,7 +10,7 @@ export function NotFound() {
 
   return ( 
     <main className="flex items-center justify-center w-[100vw] h-[100vh] bg-[#785BD7]">
-      <section className="flex flex-col mobile:justify-center mobile:gap-5 tablet:justify-between bg-white w-[70vw] h-[65vh] p-12">
+      <section className="flex flex-col mobile:justify-center mobile:gap-5 tablet:justify-between bg-white w-[70vw] h-[65vh] tablet:p-12 mobile:p-0">
         <div>
           <h1 className="desktop:text-8xl tablet:text-7xl tablet:text-left mobile:text-5xl mobile:text-center">Oops!!</h1>
           <h2 className="desktop:text-6xl tablet:text-5xl tablet:text-left mobile:text-3xl mobile:text-center">Page not found</h2>
