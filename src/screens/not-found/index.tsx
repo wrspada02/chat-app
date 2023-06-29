@@ -9,7 +9,7 @@ export function NotFound() {
   }
 
   return ( 
-    <main className="flex items-center justify-center w-[100vw] h-[100vh] bg-[#785BD7]">
+    <main className="flex items-center justify-center w-[100vw] h-[100vh] bg-[#785BD7] animate-screen-to-right">
       <section className="flex flex-col mobile:justify-center mobile:gap-5 tablet:justify-between bg-white w-[70vw] h-[65vh] tablet:p-12 mobile:p-0">
         <div>
           <h1 className="desktop:text-8xl tablet:text-7xl tablet:text-left mobile:text-5xl mobile:text-center">Oops!!</h1>
