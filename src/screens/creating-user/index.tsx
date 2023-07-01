@@ -4,10 +4,12 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useCodeQuery } from "../../hooks/useCodeQuery";
 import { LoggedUserToken } from "./@types";
 import api from '../../service';
+import { useLoggedUser } from "../../hooks/useLoggedUser";
 
 export function CreatingUser() {
-  const navigate = useNavigate();
   const query = useCodeQuery();
+  const navigate = useNavigate();
+  const [, setUserLogged] = useLoggedUser();
 
   const getLoggedUserToken = async () => {
     const body = {
@@ -15,7 +17,7 @@ export function CreatingUser() {
       client_secret: import.meta.env.VITE_GITHUB_CLIENT_SECRET,
       code: query.get("code"),
     }
-
+    // TO DO: Call back-end to get user and create on database
     try {
       const userToken = await api.post<LoggedUserToken>
         ("https://github.com/login/oauth/access_token", body);
