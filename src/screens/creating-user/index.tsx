@@ -5,28 +5,27 @@ import { useCodeQuery } from "../../hooks/useCodeQuery";
 import { LoggedUserToken } from "./@types";
 import api from '../../service';
 import { useLoggedUser } from "../../hooks/useLoggedUser";
+import { User } from "../../interfaces/User";
 
 export function CreatingUser() {
   const query = useCodeQuery();
   const navigate = useNavigate();
-  const [, setUserLogged] = useLoggedUser();
+  const { setUserLogged } = useLoggedUser();
 
   const getLoggedUserToken = async () => {
-    const body = {
-      client_id: import.meta.env.VITE_GITHUB_CLIENT_ID,
-      client_secret: import.meta.env.VITE_GITHUB_CLIENT_SECRET,
-      code: query.get("code"),
-    }
+    const code = query.get("code");
     // TO DO: Call back-end to get user and create on database
     try {
-      const userToken = await api.post<LoggedUserToken>
-        ("https://github.com/login/oauth/access_token", body);
+      const user = await api.post<User>
+        (`http://localhost:5000/users/create/${code}`);
 
-      return userToken.data.access_token;
+      if (user.data) {
+        setUserLogged(user.data);
+        navigate("/room");
+      }
     } catch (e) {
       console.error(e);
     }
-
   }
 
   useEffect(() => {
