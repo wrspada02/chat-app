@@ -1,8 +1,7 @@
 import { useEffect } from "react";
 import { Loading } from "../../components/loading";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useCodeQuery } from "../../hooks/useCodeQuery";
-import { LoggedUserToken } from "./@types";
 import api from '../../service';
 import { useLoggedUser } from "../../hooks/useLoggedUser";
 import { User } from "../../interfaces/User";
@@ -22,9 +21,11 @@ export function CreatingUser() {
       if (user.data) {
         setUserLogged(user.data);
         navigate("/room");
+      } else {
+        navigate("/login");
       }
     } catch (e) {
-      console.error(e);
+      navigate("/login");
     }
   }
 
