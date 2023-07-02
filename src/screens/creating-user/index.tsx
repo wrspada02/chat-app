@@ -22,10 +22,10 @@ export function CreatingUser() {
         setUserLogged(user.data);
         navigate("/room");
       } else {
-        navigate("/login");
+        navigate("/");
       }
     } catch (e) {
-      navigate("/login");
+      navigate("/");
     }
   }
 
