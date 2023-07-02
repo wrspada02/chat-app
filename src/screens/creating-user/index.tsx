@@ -14,7 +14,7 @@ export function CreatingUser() {
 
   const getLoggedUserToken = async () => {
     const code = query.get("code");
-    // TO DO: Call back-end to get user and create on database
+
     try {
       const user = await api.post<User>
         (`http://localhost:5000/users/create/${code}`);
