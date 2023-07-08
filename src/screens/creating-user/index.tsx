@@ -16,7 +16,7 @@ export function CreatingUser() {
 
     try {
       const user = await api.post<User>
-        (`http://localhost:5000/users/create/${code}`);
+        (`http://localhost:5000/users/login/${code}`);
 
       if (user.data) {
         setUserLogged(user.data);
