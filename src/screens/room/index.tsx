@@ -9,9 +9,10 @@ import { useNavigate } from "react-router-dom";
 
 export function Room() {
     const navigate = useNavigate();
-    const [userLogged] = useLoggedUser();
+    const { userLogged } = useLoggedUser();
 
     useEffect(() => {
+        console.log(userLogged);
         if (!userLogged) {
             navigate("/login");
         }

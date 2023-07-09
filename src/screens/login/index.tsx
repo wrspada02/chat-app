@@ -1,9 +1,19 @@
+import { useEffect } from "react";
 import { GroupMembersIcon } from "../../components/group-members-icon";
 import { GroupMessage } from "../../components/group-message";
 import { LoginButton } from "../../components/login-button";
+import { useLoggedUser } from "../../hooks/useLoggedUser";
+import { useNavigate } from "react-router-dom";
 
 export function Login() {  
-    // use web hook to listen when user logs and create an user
+    const navigate = useNavigate();
+    const { userLogged } = useLoggedUser();
+
+    useEffect(() => {
+        if (userLogged) {
+            navigate("/room");
+        }
+    }, [userLogged]);
       
     return (
         <main className="bg-[#785BD7] min-w-[100vw] min-h-[100vh] animate-opacity">
@@ -24,7 +34,6 @@ export function Login() {
                 <div className="flex pt-20 tablet:gap-10 tablet:flex-col tablet:max-w-[20vw] m-auto mobile:gap-8 mobile:justify-center">
                     <LoginButton loginMode="github" url={`https://github.com/login/oauth/authorize?scope=user:
                         email&client_id=${import.meta.env.VITE_GITHUB_CLIENT_ID}`} />
-                    <LoginButton loginMode="google" />
                 </div>
             </section>
         </main>

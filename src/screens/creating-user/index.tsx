@@ -1,37 +1,36 @@
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 import { Loading } from "../../components/loading";
 import { useNavigate } from "react-router-dom";
 import { useCodeQuery } from "../../hooks/useCodeQuery";
-import api from '../../service';
 import { useLoggedUser } from "../../hooks/useLoggedUser";
 import { User } from "../../interfaces/User";
+import axios from "axios";
 
 export function CreatingUser() {
   const query = useCodeQuery();
   const navigate = useNavigate();
-  const { setUserLogged } = useLoggedUser();
+  const { login, userLogged } = useLoggedUser();
 
-  const getLoggedUserToken = async () => {
+  const getLoggedUserToken = useCallback(async () => {
     const code = query.get("code");
 
-    try {
-      const user = await api.post<User>
+      const user = await axios.post<User>
         (`http://localhost:5000/users/login/${code}`);
 
       if (user.data) {
-        setUserLogged(user.data);
-        navigate("/room");
+        login(user.data);
       } else {
         navigate("/");
       }
-    } catch (e) {
-      navigate("/");
-    }
-  }
+  }, []);
 
   useEffect(() => {
     getLoggedUserToken();
   }, []);
+
+  useEffect(() => {
+    navigate("/room")
+  }, [userLogged])
 
   return (
     <main className="flex items-center justify-center bg-[#92485b] h-[100vh] w-[100vw] transition animate-screen-to-right">
