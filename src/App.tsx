@@ -6,8 +6,6 @@ import { User, UserActions, UserActionsReducer } from './interfaces/User';
 import { userReducer } from './reducer/user';
 import { LoggedUserContext } from './context/user';
 
-
-
 export function App() {
     const [userLogged, dispatch] = useReducer(userReducer, null);
     const userValues: UserActionsReducer = {
@@ -18,7 +16,7 @@ export function App() {
         logout: () => {
             dispatch({ type: UserActions.LOGOUT, payload: null });
         }
-    }
+    };
 
     return (
         <LoggedUserContext.Provider value={userValues}>
