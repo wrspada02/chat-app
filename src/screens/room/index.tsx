@@ -3,20 +3,18 @@ import { GroupMembersIcon } from "../../components/group-members-icon";
 import { InputMessage } from "../../components/input-message";
 import { Sidebar } from "../../components/sidebar";
 import { GroupRoomsIcon } from "../../components/group-rooms-icon";
-import { useLoggedUser } from "../../hooks/useLoggedUser";
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { LoggedUserContext } from "../../context/user";
 
 export function Room() {
     const navigate = useNavigate();
-    const { userLogged } = useLoggedUser();
+    const userLogged = useContext(LoggedUserContext);
 
     useEffect(() => {
-        console.log(userLogged);
-        if (!userLogged) {
-            navigate("/login");
-        }
-    }, []);
+        if (userLogged.userLogged) return;
+        navigate("/");
+    }, [userLogged.userLogged]);
 
     return(
         <main className="flex min-h-screen min-w-screen animate-opacity">

@@ -1,12 +1,20 @@
 import { useNavigate } from "react-router-dom";
 import NotFoundImg from '../../assets/not_found_01.webp';
+import { useContext, useEffect } from "react";
+import { LoggedUserContext } from "../../context/user";
 
 export function NotFound() {
   const navigate = useNavigate();
+  const userLogged = useContext(LoggedUserContext);
 
   const handleNavigateToPreviousPage = () => {
-    navigate(-1);
+    navigate("/");
   }
+
+  useEffect(() => {
+    if (!userLogged.userLogged) return; 
+    navigate("/room");
+  }, [userLogged.userLogged]);
 
   return ( 
     <main className="flex items-center justify-center w-[100vw] h-[100vh] bg-[#785BD7] animate-screen-to-right">

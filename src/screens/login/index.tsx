@@ -1,19 +1,18 @@
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { GroupMembersIcon } from "../../components/group-members-icon";
 import { GroupMessage } from "../../components/group-message";
 import { LoginButton } from "../../components/login-button";
-import { useLoggedUser } from "../../hooks/useLoggedUser";
 import { useNavigate } from "react-router-dom";
+import { LoggedUserContext } from "../../context/user";
 
 export function Login() {  
     const navigate = useNavigate();
-    const { userLogged } = useLoggedUser();
+    const userLogged = useContext(LoggedUserContext);
 
     useEffect(() => {
-        if (userLogged) {
+        if (!userLogged.userLogged) return;
             navigate("/room");
-        }
-    }, [userLogged]);
+    }, [userLogged.userLogged]);
       
     return (
         <main className="bg-[#785BD7] min-w-[100vw] min-h-[100vh] animate-opacity">
@@ -30,7 +29,7 @@ export function Login() {
                 mobile:w-full mobile:bg-[#785BD7] mobile:pt-52">
                 <h1 className="text-center drop-shadow-lg pt-20 tablet:text-[#785BD7] font-bold tablet:text-6xl font-[Sarpanch]
                     mobile:text-5xl mobile:text-[#D9D9D9]">Sign In</h1>
-                <hr className="tablet:hidden mobile:block mobile:w-[50vw] mobile:m-auto mobile:bg-[#CCCCCC] mobile:h-[2px]" />
+                <hr className="tablet:hidden mobile:block mobile:w-[50vw] mobile:m-auto mobile:bg-[#CCCCCC] mobile:h-[2px] mobile:mt-6" />
                 <div className="flex pt-20 tablet:gap-10 tablet:flex-col tablet:max-w-[20vw] m-auto mobile:gap-8 mobile:justify-center">
                     <LoginButton loginMode="github" url={`https://github.com/login/oauth/authorize?scope=user:
                         email&client_id=${import.meta.env.VITE_GITHUB_CLIENT_ID}`} />
