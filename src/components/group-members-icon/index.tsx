@@ -2,7 +2,7 @@ import { useCallback, useState } from "react";
 import { Modal } from "../modal";
 import { GroupMembersIconProps } from "./@types";
 
-export function GroupMembersIcon({ isButtonClickable }: GroupMembersIconProps) {
+export function GroupMembersIcon({ isButtonClickable = true }: GroupMembersIconProps) {
     const [isGroupMembersModalActive, setIsGroupMembersModalActive] 
         = useState<boolean>(false);
 

@@ -3,13 +3,15 @@ import { GroupMembersIcon } from "../../components/group-members-icon";
 import { InputMessage } from "../../components/input-message";
 import { Sidebar } from "../../components/sidebar";
 import { GroupRoomsIcon } from "../../components/group-rooms-icon";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { LoggedUserContext } from "../../context/user";
+import { WelcomeModal } from "../../components/welcome-modal";
 
 export function Room() {
     const navigate = useNavigate();
     const userLogged = useContext(LoggedUserContext);
+    const [isModalWelcomeOpen, setIsModalWelcomeOpen] = useState<boolean>(true);
 
     useEffect(() => {
         if (userLogged.userLogged) return;
@@ -17,6 +19,7 @@ export function Room() {
     }, [userLogged.userLogged]);
 
     return(
+        <>
         <main className="flex min-h-screen min-w-screen animate-opacity">
             <Sidebar style="tablet:min-h-full tablet:min-w-[20vw] mobile:hidden desktop:block" />
             <section className="min-w-min flex-1 flex flex-col">
@@ -35,5 +38,9 @@ export function Room() {
                 </section>
             </section>
         </main>
+        {isModalWelcomeOpen && <WelcomeModal handleClose={() => {
+            setIsModalWelcomeOpen(false);
+        }} />}
+        </>
     );
 }
