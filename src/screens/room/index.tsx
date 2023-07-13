@@ -3,7 +3,7 @@ import { GroupMembersIcon } from "../../components/group-members-icon";
 import { InputMessage } from "../../components/input-message";
 import { Sidebar } from "../../components/sidebar";
 import { GroupRoomsIcon } from "../../components/group-rooms-icon";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { LoggedUserContext } from "../../context/user";
 import { WelcomeModal } from "../../components/welcome-modal";
@@ -38,9 +38,10 @@ export function Room() {
                 </section>
             </section>
         </main>
-        {isModalWelcomeOpen && <WelcomeModal handleClose={() => {
-            setIsModalWelcomeOpen(false);
-        }} />}
+        {isModalWelcomeOpen ? (
+            <WelcomeModal handleClose={() => {
+                setIsModalWelcomeOpen(false);
+        }}/>) : null}
         </>
     );
 }
