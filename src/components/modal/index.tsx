@@ -6,7 +6,7 @@ export function Modal({ handleCloseModal,
      style, closeModalPosition }: ModalProps) {
     return (
         <section className={`bg-[#785BD7] top-3 p-3 absolute min-h-[80vh] 
-            rounded-xl animate-group-members max-h-screen ${style}`}>
+            rounded-xl animate-open_to_bottom shadow-lg max-h-screen ${style}`}>
             <header>
                 <img src={CloseModalIcon} alt="Close modal Icon"
                   onClick={() => handleCloseModal()} className={`${closeModalPosition} max-w-[30px]
