@@ -35,7 +35,7 @@ module.exports = {
         'group-members': 'group_members_initialize 1s ease-in-out normal',
         'screen-to-right': 'opacity_to_right_increasing 0.8s ease-in-out normal',
         'opacity': 'opacity 1s ease-in-out normal',
-        'pulse': 'pulse 1.5s ease-in-out normal',
+        'pulse': 'pulse 1s ease-in-out normal',
         'open_to_bottom': 'opacity_to_bottom_increasing 0.5s ease-in-out normal',
       },
     },

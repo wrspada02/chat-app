@@ -7,11 +7,16 @@ import { useContext, useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { LoggedUserContext } from "../../context/user";
 import { WelcomeModal } from "../../components/welcome-modal";
+import { JoinRoomModal } from "../../components/join-room-modal";
+import { HandleRoomModal } from "./@types";
 
 export function Room() {
     const navigate = useNavigate();
     const userLogged = useContext(LoggedUserContext);
     const [isModalWelcomeOpen, setIsModalWelcomeOpen] = useState<boolean>(true);
+    const [roomModal, setRoomModal] = useState<HandleRoomModal>({
+        isOpenModalCreateJoinRoom: false,
+    });
 
     useEffect(() => {
         if (userLogged.userLogged) return;
@@ -21,7 +26,14 @@ export function Room() {
     return(
         <>
         <main className="flex min-h-screen min-w-screen animate-opacity">
-            <Sidebar style="tablet:min-h-full tablet:min-w-[20vw] mobile:hidden desktop:block" />
+            <Sidebar style="tablet:min-h-full tablet:min-w-[20vw] 
+                mobile:hidden desktop:block" 
+                onClickButton={(typeRoom) => {
+                    setRoomModal({
+                        isOpenModalCreateJoinRoom: true,
+                        room: typeRoom,
+                    });
+                }} />
             <section className="min-w-min flex-1 flex flex-col">
                 <header className="bg-[#FCFCFC] flex items-center justify-between p-5">
                     <GroupRoomsIcon style="mobile:block desktop:hidden" />
@@ -38,10 +50,15 @@ export function Room() {
                 </section>
             </section>
         </main>
-        {isModalWelcomeOpen ? (
+        {isModalWelcomeOpen && (
             <WelcomeModal handleClose={() => {
                 setIsModalWelcomeOpen(false);
-        }}/>) : null}
+        }}/>)}
+        {roomModal.isOpenModalCreateJoinRoom && roomModal.room && (
+            <JoinRoomModal isJoinRoom={roomModal.room} handleClose={() => {
+                setRoomModal({...roomModal, isOpenModalCreateJoinRoom: false });
+            }} />
+        )}
         </>
     );
 }

@@ -32,7 +32,7 @@ export function WelcomeModal({ handleClose }: WelcomeModalProps): JSX.Element {
             alt="Github image person" />
         </div>
         <div className="flex flex-col justify-center align-center">
-          <p className="text-2xl font-semibold mobile:text-center">Welcome on board</p>
+          <p className="text-2xl font-semibold break-words mobile:text-center">Welcome on board</p>
           <button className="p-5 font-semibold rounded-md
             bg-orange-400 text-center shadow-md max-w-[200px] m-auto
               transition-all hover:shadow-none hover:opacity-90" onClick={() => handleClose()}>Let's go</button>
