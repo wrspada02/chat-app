@@ -7,12 +7,6 @@ export function JoinRoomModal({ isJoinRoom, handleClose }: JoinRoomModalProps) {
     room_id: '',
     room_password: '',
   });
-  
-  const handleCloseByEscButton = (event: KeyboardEvent) => {
-    if (event.code === 'Escape') {
-      handleClose();
-    }
-  };
 
   const roomTitles = useMemo(() => {
     return {
@@ -27,6 +21,12 @@ export function JoinRoomModal({ isJoinRoom, handleClose }: JoinRoomModalProps) {
 
     console.log(roomSchema.parse(room));
   }, [room]);
+
+  const handleCloseByEscButton = (event: KeyboardEvent) => {
+    if (event.code === 'Escape') {
+      handleClose();
+    }
+  };
 
   useEffect(() => {
     document.addEventListener('keydown', handleCloseByEscButton);
