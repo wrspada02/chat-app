@@ -13,8 +13,12 @@ export function JoinRoomModal({ isJoinRoom, handleClose }: JoinRoomModalProps) {
     }
   };
 
-  const roomTitle = useMemo(() => {
-    return ['join'].includes(isJoinRoom) ? 'Join into a Room' : 'Create a room';
+  const roomTitles = useMemo(() => {
+    return {
+      modalTitle: ['join'].includes(isJoinRoom) ? 'Join into a Room' : 'Create a room',
+      buttonTitle: ['join'].includes(isJoinRoom) ? 'Join' : 'Create',
+    };
+
   }, [isJoinRoom]);
 
   const handleSubmitRoomForm = useCallback((event: FormEvent) => {
@@ -36,7 +40,7 @@ export function JoinRoomModal({ isJoinRoom, handleClose }: JoinRoomModalProps) {
       w-[100vw] h-[100vh] flex items-center justify-center">
       <form className="mobile:p-5 desktop:p-16 bg-[#D9D9D9] animate-pulse" onSubmit={handleSubmitRoomForm}>
         <header className="flex items-center justify-between h-5">
-          <h2 className="text-2xl font-bold text-[#785BD7]">{roomTitle}</h2>
+          <h2 className="text-2xl font-bold text-[#785BD7]">{roomTitles.modalTitle}</h2>
           <button className="text-2xl" onClick={handleClose}>&#x2715;</button>
         </header>
         <article className="mobile:flex mobile:flex-wrap mobile:p-2 mobile:gap-3 mobile:flex-col 
@@ -76,8 +80,8 @@ export function JoinRoomModal({ isJoinRoom, handleClose }: JoinRoomModalProps) {
         </article>
         <footer>
           <button className="mobile:w-full desktop:w-auto bg-[#785BD7] m-auto float-right
-           text-white font-semibold p-4 shadow-md transition-all hover:shadow-none 
-             hover:opacity-75" type="submit">Create</button>
+           text-white rounded-md font-semibold p-4 shadow-md transition-all hover:shadow-none 
+             hover:opacity-75" type="submit">{roomTitles.buttonTitle}</button>
         </footer>
       </form>
     </section>
