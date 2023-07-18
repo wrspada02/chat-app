@@ -33,7 +33,9 @@ export function CreatingUser() {
   }, [userLogged.userLogged]);
 
   return (
-    <main className="flex items-center justify-center bg-[#92485b] h-[100vh] w-[100vw] transition animate-screen-to-right">
+    <main className="flex items-center justify-center 
+      bg-[#92485b] h-[100vh] w-[100vw] transition 
+       animate-screen-to-right">
       <Loading />
     </main>
   );

@@ -7,6 +7,7 @@ export function JoinRoomModal({ isJoinRoom, handleClose }: JoinRoomModalProps) {
     room_id: '',
     room_password: '',
   });
+  
   const handleCloseByEscButton = (event: KeyboardEvent) => {
     if (event.code === 'Escape') {
       handleClose();
