@@ -37,9 +37,9 @@ export function JoinRoomModal({ isJoinRoom, handleClose }: JoinRoomModalProps) {
   }, []);
   
   return (
-    <section className="absolute top-0 left-0 bg-black opacity-80
+    <section className="absolute top-0 left-0 bg-black bg-opacity-70
       w-[100vw] h-[100vh] flex items-center justify-center">
-      <form className="mobile:p-5 desktop:p-16 bg-[#D9D9D9] animate-pulse" onSubmit={handleSubmitRoomForm}>
+      <form className="mobile:p-5 desktop:p-16 mobile:gap-2 bg-[#D9D9D9] animate-pulse" onSubmit={handleSubmitRoomForm}>
         <header className="flex items-center justify-between h-5">
           <h2 className="text-2xl font-bold text-[#785BD7]">{roomTitles.modalTitle}</h2>
           <button className="text-2xl" onClick={handleClose}>&#x2715;</button>
