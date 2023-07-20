@@ -1,6 +1,7 @@
-import { useEffect, useState } from "react";
 import { GroupMessage } from "../group-message";
 import { SidebarProps } from "./@types";
+import { CgMenuMotion } from 'react-icons/cg';
+import { BsArrowBarLeft } from 'react-icons/bs';
 
 export function Sidebar({ onClickButton, isOpenSidebar, setIsOpenSidebar }: SidebarProps) {
     return (
@@ -12,7 +13,7 @@ export function Sidebar({ onClickButton, isOpenSidebar, setIsOpenSidebar }: Side
                 onClick={() => {
                     setIsOpenSidebar(!isOpenSidebar);
                 }}>
-                {isOpenSidebar ? '<' : '>'}
+                {isOpenSidebar ? <BsArrowBarLeft /> : <CgMenuMotion />}
             </button>
             <ul className={`${isOpenSidebar ? `mobile:block` : 
                 `mobile:hidden `}desktop:block`}>
