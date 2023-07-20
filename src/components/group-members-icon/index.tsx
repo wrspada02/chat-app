@@ -26,10 +26,9 @@ export function GroupMembersIcon({ isButtonClickable = true }: GroupMembersIconP
             </i>
 
             {isGroupMembersModalActive && (
-                <Modal 
-                    closeModalPosition="float-right" 
-                    style="right-2" 
+                <Modal
                     handleCloseModal={handleCloseModal}
+                    isOpenCloseModal={isGroupMembersModalActive}
                 />
             )}
         </>

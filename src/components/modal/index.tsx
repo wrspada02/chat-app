@@ -2,10 +2,15 @@ import { GroupMessage } from "../group-message";
 import { BsArrowBarRight } from 'react-icons/bs';
 import { ModalProps } from "./@types";
 
-export function Modal({ handleCloseModal }: ModalProps) {
+export function Modal({ handleCloseModal, isOpenCloseModal }: ModalProps) {
     return (
         <section className={`bg-[#785BD7] top-3 p-3 absolute overflow-y-scroll
-            rounded-xl animate-open_to_bottom shadow-lg max-h-[60vh]`}>
+            rounded-xl shadow-2xl right-3 max-h-[60vh] 
+            ${isOpenCloseModal ? `animate-open_to_bottom` : `animate-screen-to-right`}`}
+            onAnimationEnd={() => {
+                if (isOpenCloseModal) return;
+                handleCloseModal();
+            }}>
             <header>
                 <button onClick={() => handleCloseModal()} 
                 className={`float-right max-w-[30px] hover:opacity-80 
