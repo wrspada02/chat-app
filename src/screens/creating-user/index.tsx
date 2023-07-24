@@ -2,23 +2,23 @@ import { useCallback, useContext, useEffect } from "react";
 import { Loading } from "../../components/loading";
 import { useNavigate } from "react-router-dom";
 import { useCodeQuery } from "../../hooks/useCodeQuery";
-import { User } from "../../interfaces/User";
 import axios from "axios";
 import { LoggedUserContext } from "../../context/user";
+import { LoggedUserResponse } from "./@types";
 
 export function CreatingUser() {
   const query = useCodeQuery();
   const navigate = useNavigate();
-  const userLogged = useContext(LoggedUserContext);
+  const userAuth = useContext(LoggedUserContext);
 
   const getLoggedUserToken = useCallback(async () => {
     const code = query.get("code");
 
-      const user = await axios.post<User>
+      const user = await axios.post<LoggedUserResponse>
         (`http://localhost:5000/users/login/${code}`);
 
       if (user.data) {
-        userLogged.login(user.data);
+        userAuth.login(user.data);
       } else {
         navigate("/");
       }
@@ -30,7 +30,7 @@ export function CreatingUser() {
 
   useEffect(() => {
     navigate("/room");
-  }, [userLogged.userLogged]);
+  }, [userAuth.userLogged?.user]);
 
   return (
     <main className="flex items-center justify-center 

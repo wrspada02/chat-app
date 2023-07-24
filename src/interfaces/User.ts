@@ -1,3 +1,5 @@
+import { LoggedUserResponse } from "../screens/creating-user/@types";
+
 export interface User {
   login: string;
   avatar_url: string;
@@ -16,7 +18,7 @@ export interface UserType {
 }
 
 export interface UserActionsReducer {
-  userLogged: User | null;
-  login: (user: User) => void;
+  userLogged: LoggedUserResponse | null;
+  login: (user: LoggedUserResponse) => void;
   logout: (user: null) => void;
 }

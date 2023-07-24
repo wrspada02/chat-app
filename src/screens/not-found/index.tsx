@@ -5,16 +5,16 @@ import { LoggedUserContext } from "../../context/user";
 
 export function NotFound() {
   const navigate = useNavigate();
-  const userLogged = useContext(LoggedUserContext);
+  const userAuth = useContext(LoggedUserContext);
 
   const handleNavigateToPreviousPage = () => {
     navigate("/");
   }
 
   useEffect(() => {
-    if (!userLogged.userLogged) return; 
+    if (!userAuth.userLogged) return; 
     navigate("/room");
-  }, [userLogged.userLogged]);
+  }, [userAuth.userLogged?.user]);
 
   return ( 
     <main className="flex items-center justify-center w-[100vw] h-[100vh] bg-[#785BD7] animate-screen-to-right-negative">

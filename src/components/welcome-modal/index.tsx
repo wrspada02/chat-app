@@ -3,7 +3,7 @@ import { LoggedUserContext } from "../../context/user";
 import { WelcomeModalProps } from "./@types";
 
 export function WelcomeModal({ handleClose }: WelcomeModalProps): JSX.Element {
-  const userLogged = useContext(LoggedUserContext);
+  const userAuth = useContext(LoggedUserContext);
 
   const handleCloseByEscButton = (event: KeyboardEvent) => {
     if (event.code === 'Escape') {
@@ -27,7 +27,7 @@ export function WelcomeModal({ handleClose }: WelcomeModalProps): JSX.Element {
        desktop:justify-around desktop:align-center animate-pulse
        mobile:flex mobile:flex-col mobile:justify-center mobile:align-center">
         <div>
-          <img src={userLogged.userLogged?.avatar_url || ''} className="rounded-full 
+          <img src={userAuth.userLogged?.user.avatar_url || ''} className="rounded-full 
           desktop:max-w-[150px] object-contain mobile:m-auto mobile:max-w-[100px]" 
             alt="Github image person" />
         </div>

@@ -7,12 +7,12 @@ import { LoggedUserContext } from "../../context/user";
 
 export function Login() {  
     const navigate = useNavigate();
-    const userLogged = useContext(LoggedUserContext);
+    const userAuth = useContext(LoggedUserContext);
 
     useEffect(() => {
-        if (!userLogged.userLogged) return;
-            navigate("/room");
-    }, [userLogged.userLogged]);
+        if (!userAuth.userLogged) return;
+        navigate("/room");
+    }, [userAuth.userLogged?.user]);
       
     return (
         <main className="bg-[#785BD7] min-w-[100vw] min-h-[100vh] animate-opacity">

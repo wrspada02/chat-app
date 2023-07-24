@@ -2,8 +2,7 @@ import { GroupMessage } from "../../components/group-message";
 import { GroupMembersIcon } from "../../components/group-members-icon";
 import { InputMessage } from "../../components/input-message";
 import { Sidebar } from "../../components/sidebar";
-import { GroupRoomsIcon } from "../../components/group-rooms-icon";
-import { useContext, useEffect, useMemo, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { LoggedUserContext } from "../../context/user";
 import { WelcomeModal } from "../../components/welcome-modal";
@@ -12,7 +11,7 @@ import { HandleRoomModal } from "./@types";
 
 export function Room() {
     const navigate = useNavigate();
-    const userLogged = useContext(LoggedUserContext);
+    const userAuth = useContext(LoggedUserContext);
     const [isModalWelcomeOpen, setIsModalWelcomeOpen] = useState<boolean>(true);
     const [roomModal, setRoomModal] = useState<HandleRoomModal>({
         isOpenModalCreateJoinRoom: false,
@@ -20,9 +19,9 @@ export function Room() {
     const [isOpenSidebar, setIsOpenSidebar] = useState<boolean>(false);
 
     useEffect(() => {
-        if (userLogged.userLogged) return;
+        if (userAuth.userLogged) return;
         navigate("/");
-    }, [userLogged.userLogged]);
+    }, [userAuth.userLogged?.user]);
 
     return(
         <>
