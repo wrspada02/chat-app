@@ -17,9 +17,13 @@ module.exports = {
           '0%': { translate: '-2rem', opacity: 0 },
           '100%': { translate: '0', opacity: 1},
         },
-        opacity_to_right_increasing: {
+        hidden_to_right_negative: {
           '0%': { translate: '-400px', opacity: 0 },
           '100%': { translate: '0', opacity: 1 },
+        },
+        hidden_to_right_positive: {
+          '0%': { translate: '0', opacity: 0 },
+          '100%': { translate: '400px', opacity: 1 },
         },
         opacity_to_bottom_increasing: {
           '0%': { transform: 'translateY(-400px)', opacity: 0 },
@@ -33,7 +37,8 @@ module.exports = {
       },
       animation: {
         'group-members': 'group_members_initialize 1s ease-in-out normal',
-        'screen-to-right': 'opacity_to_right_increasing 0.8s ease-in-out normal',
+        'screen-to-right-negative': 'hidden_to_right_negative 0.5s ease-in-out normal',
+        'screen-to-right-positive': 'hidden_to_right_positive 0.5s ease-in-out normal',
         'opacity': 'opacity 1s ease-in-out normal',
         'pulse': 'pulse 1s ease-in-out normal',
         'open_to_bottom': 'opacity_to_bottom_increasing 0.5s ease-in-out normal',
