@@ -1,7 +1,10 @@
-import { FormEvent, useCallback, useEffect, useMemo, useState } from "react";
-import { JoinRoomModalProps, Room, roomSchema } from "./@types";
+import { FormEvent, useCallback, useContext, useEffect, useMemo, useState } from "react";
+import { JoinRoomModalProps, Room } from "./@types";
+import axios from "axios";
+import { LoggedUserContext } from "../../context/user";
 
 export function JoinRoomModal({ isJoinRoom, handleClose }: JoinRoomModalProps) {
+  const userAuth = useContext(LoggedUserContext);
   const [room, setRoom] = useState<Room>({
     is_private: false,
     room_id: '',
@@ -16,10 +19,12 @@ export function JoinRoomModal({ isJoinRoom, handleClose }: JoinRoomModalProps) {
 
   }, [isJoinRoom]);
 
-  const handleSubmitRoomForm = useCallback((event: FormEvent) => {
+  const handleSubmitRoomForm = useCallback(async (event: FormEvent) => {
     event.preventDefault();
 
-    console.log(roomSchema.parse(room));
+    const createRoom = await axios.post('http://localhost:5000/rooms/create', room, 
+      { headers: { Authorization: userAuth.userLogged?.token }});
+
   }, [room]);
 
   const handleCloseByEscButton = (event: KeyboardEvent) => {
@@ -45,9 +50,10 @@ export function JoinRoomModal({ isJoinRoom, handleClose }: JoinRoomModalProps) {
           <h2 className="text-2xl font-bold text-[#785BD7]">{roomTitles.modalTitle}</h2>
           <button className="text-2xl" onClick={handleClose}>&#x2715;</button>
         </header>
-        <article className="mobile:flex mobile:flex-wrap mobile:p-2 mobile:gap-3 mobile:flex-col 
-          tablet:items-center tablet:justify-between tablet:gap-5 tablet:p-8 desktop:flex-row">
-            <div className="flex gap-3">
+        <article className="mobile:flex mobile:flex-wrap mobile:p-2 desktop:pt-2 desktop:pb-2 
+        desktop:pl-0 desktop:pr-0 mobile:gap-3 mobile:flex-col tablet:items-center tablet:justify-between 
+        tablet:gap-5 tablet:p-8 desktop:flex-row">
+            <div className="flex gap-3 mobile:w-full mobile:justify-between desktop:justify-normal">
                 <label className="text-[#785BD7] font-semibold">Is Private?</label>
                 <input type="checkbox" checked={room?.is_private} 
                   onChange={(inputValue) => {

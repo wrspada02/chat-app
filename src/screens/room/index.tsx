@@ -6,7 +6,7 @@ import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { LoggedUserContext } from "../../context/user";
 import { WelcomeModal } from "../../components/welcome-modal";
-import { JoinRoomModal } from "../../components/join-room-modal";
+import { JoinRoomModal } from "../../components/room-modal";
 import { HandleRoomModal } from "./@types";
 
 export function Room() {
@@ -25,7 +25,7 @@ export function Room() {
 
     return(
         <>
-        <main className="flex min-h-screen min-w-screen animate-opacity">
+        <main className="flex min-h-screen min-w-screen animate-opacity overflow-hidden">
             <Sidebar style="tablet:min-h-full tablet:min-w-[20vw] flex-1" 
                 onClickButton={(typeRoom) => {
                     setRoomModal({
