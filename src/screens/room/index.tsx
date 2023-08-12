@@ -56,7 +56,7 @@ export function Room() {
                 setIsModalWelcomeOpen(false);
         }}/>)}
         {roomModal.isOpenModalCreateJoinRoom && roomModal.room && (
-            <JoinRoomModal isJoinRoom={roomModal.room} handleClose={() => {
+            <JoinRoomModal typeRoom={roomModal.room} handleClose={() => {
                 setRoomModal({...roomModal, isOpenModalCreateJoinRoom: false });
             }} />
         )}

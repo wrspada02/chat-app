@@ -1,9 +1,9 @@
 import { FormEvent, useCallback, useContext, useEffect, useMemo, useState } from "react";
-import { JoinRoomModalProps, Room } from "./@types";
 import axios from "axios";
+import { JoinRoomModalProps, Room } from "./@types";
 import { LoggedUserContext } from "../../context/user";
 
-export function JoinRoomModal({ isJoinRoom, handleClose }: JoinRoomModalProps) {
+export function JoinRoomModal({ typeRoom, handleClose }: JoinRoomModalProps) {
   const userAuth = useContext(LoggedUserContext);
   const [room, setRoom] = useState<Room>({
     is_private: false,
@@ -13,17 +13,28 @@ export function JoinRoomModal({ isJoinRoom, handleClose }: JoinRoomModalProps) {
 
   const roomTitles = useMemo(() => {
     return {
-      modalTitle: ['join'].includes(isJoinRoom) ? 'Join into a Room' : 'Create a room',
-      buttonTitle: ['join'].includes(isJoinRoom) ? 'Join' : 'Create',
+      modalTitle: ['join'].includes(typeRoom) ? 'Join into a Room' : 'Create a room',
+      buttonTitle: ['join'].includes(typeRoom) ? 'Join' : 'Create',
     };
 
-  }, [isJoinRoom]);
+  }, [typeRoom]);
 
   const handleSubmitRoomForm = useCallback(async (event: FormEvent) => {
     event.preventDefault();
 
-    const createRoom = await axios.post('http://localhost:5000/rooms/create', room, 
-      { headers: { Authorization: userAuth.userLogged?.token }});
+    try {
+      if (['join'].includes(typeRoom)) {
+        await axios.put(`http://localhost:5000/rooms/room/${room.room_id}/join`, room,
+        { headers: { Authorization: userAuth.userLogged?.token }});
+      } else {
+        await axios.post('http://localhost:5000/rooms/create', room, 
+        { headers: { Authorization: userAuth.userLogged?.token }});
+      }
+      handleClose();
+    } catch (e) {
+      handleClose();
+    }
+
 
   }, [room]);
 

@@ -2,7 +2,7 @@ import { z } from "zod";
 import { TypeHandleModalRoom } from "../../../screens/room/@types";
 
 export interface JoinRoomModalProps {
-  isJoinRoom: TypeHandleModalRoom;
+  typeRoom: TypeHandleModalRoom;
   handleClose: () => void;
 }
 
