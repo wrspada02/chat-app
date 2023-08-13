@@ -14,7 +14,6 @@ export const roomSchema = z.object({
   .min(5),
   room_password: z.string()
   .describe('The password for a private room')
-  .min(8),
-}).required();
+});
 
 export type Room = z.infer<typeof roomSchema>;

@@ -1,6 +1,6 @@
 import { FormEvent, useCallback, useContext, useEffect, useMemo, useState } from "react";
 import axios from "axios";
-import { JoinRoomModalProps, Room } from "./@types";
+import { JoinRoomModalProps, Room, roomSchema } from "./@types";
 import { LoggedUserContext } from "../../context/user";
 
 export function JoinRoomModal({ typeRoom, handleClose }: JoinRoomModalProps) {
@@ -22,20 +22,20 @@ export function JoinRoomModal({ typeRoom, handleClose }: JoinRoomModalProps) {
   const handleSubmitRoomForm = useCallback(async (event: FormEvent) => {
     event.preventDefault();
 
+    const roomParsed = roomSchema.parse(room);
+
     try {
       if (['join'].includes(typeRoom)) {
-        await axios.put(`http://localhost:5000/rooms/room/${room.room_id}/join`, room,
+        await axios.put(`http://localhost:5000/rooms/room/${roomParsed.room_id}/join`, roomParsed,
         { headers: { Authorization: userAuth.userLogged?.token }});
       } else {
-        await axios.post('http://localhost:5000/rooms/create', room, 
+        await axios.post('http://localhost:5000/rooms/create', roomParsed, 
         { headers: { Authorization: userAuth.userLogged?.token }});
       }
       handleClose();
     } catch (e) {
       handleClose();
     }
-
-
   }, [room]);
 
   const handleCloseByEscButton = (event: KeyboardEvent) => {
