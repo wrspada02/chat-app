@@ -1,9 +1,14 @@
-import { GroupMessage } from "../group-message";
 import { SidebarProps } from "./@types";
 import { CgMenuMotion } from 'react-icons/cg';
 import { BsArrowBarLeft } from 'react-icons/bs';
+import { GroupRoom } from "../group-room";
 
-export function Sidebar({ onClickButton, isOpenSidebar, setIsOpenSidebar }: SidebarProps) {
+export function Sidebar({ 
+    onClickButton, 
+    isOpenSidebar, 
+    setIsOpenSidebar, 
+    rooms,
+    onSelectRoom }: SidebarProps) {
     return (
         <aside className={`${isOpenSidebar ? `mobile:min-w-[100vw]` : `mobile:w-max`} desktop:flex 
         flex-col justify-between align-center bg-[#785BD7] mobile:py-8
@@ -16,10 +21,14 @@ export function Sidebar({ onClickButton, isOpenSidebar, setIsOpenSidebar }: Side
                 {isOpenSidebar ? <BsArrowBarLeft /> : <CgMenuMotion />}
             </button>
             <ul className={`${isOpenSidebar ? `mobile:block` : 
-                `mobile:hidden `}desktop:block`}>
-                <li>
-                    <GroupMessage />
-                </li>
+                `mobile:hidden `}desktop:block flex flex-col gap-5`}>
+                {rooms.map((room, index) => (
+                    <li onClick={() => {
+                        onSelectRoom(room.room_id);
+                    }}>
+                        <GroupRoom {...room} key={index} />
+                    </li>
+                ))}
             </ul>
             <ul className={`${isOpenSidebar ? `mobile:flex` : `mobile:hidden`} 
             desktop:flex flex-col justify-between align-center gap-3`}>

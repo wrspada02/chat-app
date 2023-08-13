@@ -22,7 +22,15 @@ export function Login() {
                     <GroupMembersIcon isButtonClickable={false} />
                 </header>
                 <section className="h-[400px] bg-[#555555]">
-                    <GroupMessage />
+                    <article className="p-3">
+                        <figure className="flex items-center">
+                            <div className="h-14 w-14 bg-black rounded-full min-w-[56px]"></div>
+                            <figcaption className="p-3 flex flex-col justify-center text-white">
+                                <p>William</p>
+                                <p>Hello, How's it going?</p>
+                            </figcaption>
+                        </figure>
+                    </article>
                 </section>
             </article>
             <section className="tablet:min-h-[100vh] tablet:max-w-[35vw] tablet:bg-[#D9D9D9] tablet:float-right

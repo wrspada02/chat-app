@@ -1,11 +1,13 @@
-export function GroupMessage() {
+import { GroupMessageProps } from "./@types";
+
+export function GroupMessage({ content, sender }: GroupMessageProps) {
     return (
         <article className="p-3">
             <figure className="flex items-center">
-                <div className="h-14 w-14 bg-black rounded-full min-w-[56px]"></div>
+                <img src={sender?.avatar_url} alt={`Avatar user ${sender?.login} image`} />
                 <figcaption className="p-3 flex flex-col justify-center text-white">
-                    <p>William</p>
-                    <p>Hello, How's it going?</p>
+                    <p>{sender?.login}</p>
+                    <p>{content || ''}</p>
                 </figcaption>
             </figure>
         </article>

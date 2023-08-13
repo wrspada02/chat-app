@@ -10,6 +10,7 @@ import { WelcomeModal } from "../../components/welcome-modal";
 import { JoinRoomModal } from "../../components/room-modal";
 import { HandleRoomModal } from "./@types";
 import { RoomDto } from "../../interfaces/Room";
+import { SelectedRoom } from "../../components/selected-room";
 
 export function Room() {
     const navigate = useNavigate();
@@ -20,6 +21,7 @@ export function Room() {
     });
     const [roomsByUser, setRoomsByUser] = useState<RoomDto[]>([]);
     const [isOpenSidebar, setIsOpenSidebar] = useState<boolean>(false);
+    const [selectedRoom, setSelectedRoom] = useState<string>('');
 
     const getRoomsByUser = useCallback(async () => {
         try {
@@ -39,14 +41,10 @@ export function Room() {
         getRoomsByUser();
     }, []);
 
-    useEffect(() => {
-        console.log(roomsByUser);
-    }, [roomsByUser]);
-
     return(
         <>
         <main className="flex min-h-screen min-w-screen animate-opacity overflow-hidden">
-            <Sidebar style="tablet:min-h-full tablet:min-w-[20vw] flex-1" 
+            <Sidebar rooms={roomsByUser} style="tablet:min-h-full tablet:min-w-[20vw] flex-1" 
                 onClickButton={(typeRoom) => {
                     setRoomModal({
                         isOpenModalCreateJoinRoom: true,
@@ -55,21 +53,22 @@ export function Room() {
                 }}
                 isOpenSidebar={isOpenSidebar}
                 setIsOpenSidebar={setIsOpenSidebar}
+                onSelectRoom={(room_id) => {
+                    setSelectedRoom(room_id);
+                }}
             />
-            <section className={`${isOpenSidebar && `mobile:hidden`} flex flex-1 flex-col`}>
-                <header className="bg-[#FCFCFC] flex items-center justify-between p-5">
-                    <h2 className="mobile:text-lg tablet:text-lg desktop:text-xl"> Group of programmers</h2>
-                    <GroupMembersIcon />
-                </header>
-                <section className="bg-[#555555] flex flex-1 flex-col justify-end px-5 py-5">
-                    <section>
-                        <GroupMessage />
-                        <GroupMessage />
-                        <GroupMessage />
-                    </section>
-                    <InputMessage placeholder="Type the message..." />
-                </section>
-            </section>
+            {selectedRoom ? (
+                <SelectedRoom 
+                    isOpenSidebar={isOpenSidebar} 
+                    room={roomsByUser.find((room) => room.room_id 
+                        === selectedRoom) as RoomDto} 
+                />
+            ) : (
+                <div className="bg-slate-500 p-5 flex justify-center items-center w-full">
+                    <p>No room selected</p>
+                </div>
+            )}
+            
         </main>
         {isModalWelcomeOpen && (
             <WelcomeModal handleClose={() => {
