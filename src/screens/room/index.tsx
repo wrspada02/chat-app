@@ -11,6 +11,7 @@ import { JoinRoomModal } from "../../components/room-modal";
 import { HandleRoomModal } from "./@types";
 import { RoomDto } from "../../interfaces/Room";
 import { SelectedRoom } from "../../components/selected-room";
+import { SelectedRoomContext } from "../../context/selectedRoom";
 
 export function Room() {
     const navigate = useNavigate();
@@ -29,13 +30,10 @@ export function Room() {
             { headers: { Authorization: userAuth.userLogged?.token }});
 
             setRoomsByUser(rooms.data);
-        } catch (e) {}
+        } catch (e) {
+            navigate("/");
+        }
     }, [userAuth.userLogged?.token]);
-
-    useEffect(() => {
-        if (userAuth.userLogged) return;
-        navigate("/");
-    }, [userAuth.userLogged?.user]);
 
     useEffect(() => {
         getRoomsByUser();
@@ -58,11 +56,13 @@ export function Room() {
                 }}
             />
             {selectedRoom ? (
-                <SelectedRoom 
-                    isOpenSidebar={isOpenSidebar} 
-                    room={roomsByUser.find((room) => room.room_id 
-                        === selectedRoom) as RoomDto} 
-                />
+                <SelectedRoomContext.Provider value={
+                    roomsByUser.find((room) => room.room_id 
+                    === selectedRoom) as RoomDto}>
+                    <SelectedRoom 
+                        isOpenSidebar={isOpenSidebar}
+                    />
+                </SelectedRoomContext.Provider>
             ) : (
                 <div className="bg-slate-500 p-5 flex justify-center items-center w-full">
                     <p>No room selected</p>

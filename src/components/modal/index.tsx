@@ -1,10 +1,13 @@
 import { GroupMessage } from "../group-message";
 import { BsArrowBarRight } from 'react-icons/bs';
 import { ModalProps } from "./@types";
-import { useEffect, useState } from "react";
+import { useContext, useState } from "react";
+import { RoomDto } from "../../interfaces/Room";
+import { SelectedRoomContext } from "../../context/selectedRoom";
 
 export function Modal({ handleCloseModal, isOpenCloseModal }: ModalProps) {
     const [isAnimationCloseOn, setIsAnimationCloseOn] = useState<boolean>(false);
+    const room = useContext<RoomDto | null>(SelectedRoomContext);
 
     return (
         <section className={`bg-[#785BD7] top-3 p-3 absolute overflow-y-auto
@@ -25,9 +28,9 @@ export function Modal({ handleCloseModal, isOpenCloseModal }: ModalProps) {
                 </button>
             </header>
             <article className="flex flex-col gap-1 mt-3">
-                <GroupMessage />
-                <GroupMessage />
-                <GroupMessage />
+                {room?.group_people.map((person, index) => (
+                    <GroupMessage content={''} sender={person} key={index} />
+                ))}
             </article>
         </section>
     );
