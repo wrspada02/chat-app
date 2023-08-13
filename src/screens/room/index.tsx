@@ -1,13 +1,15 @@
+import axios from "axios";
 import { GroupMessage } from "../../components/group-message";
 import { GroupMembersIcon } from "../../components/group-members-icon";
 import { InputMessage } from "../../components/input-message";
 import { Sidebar } from "../../components/sidebar";
-import { useContext, useEffect, useState } from "react";
+import { useCallback, useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { LoggedUserContext } from "../../context/user";
 import { WelcomeModal } from "../../components/welcome-modal";
 import { JoinRoomModal } from "../../components/room-modal";
 import { HandleRoomModal } from "./@types";
+import { RoomDto } from "../../interfaces/Room";
 
 export function Room() {
     const navigate = useNavigate();
@@ -16,12 +18,30 @@ export function Room() {
     const [roomModal, setRoomModal] = useState<HandleRoomModal>({
         isOpenModalCreateJoinRoom: false,
     });
+    const [roomsByUser, setRoomsByUser] = useState<RoomDto[]>([]);
     const [isOpenSidebar, setIsOpenSidebar] = useState<boolean>(false);
+
+    const getRoomsByUser = useCallback(async () => {
+        try {
+            const rooms = await axios.get<RoomDto[]>("http://localhost:5000/rooms/room/user", 
+            { headers: { Authorization: userAuth.userLogged?.token }});
+
+            setRoomsByUser(rooms.data);
+        } catch (e) {}
+    }, [userAuth.userLogged?.token]);
 
     useEffect(() => {
         if (userAuth.userLogged) return;
         navigate("/");
     }, [userAuth.userLogged?.user]);
+
+    useEffect(() => {
+        getRoomsByUser();
+    }, []);
+
+    useEffect(() => {
+        console.log(roomsByUser);
+    }, [roomsByUser]);
 
     return(
         <>
