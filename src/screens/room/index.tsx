@@ -54,6 +54,7 @@ export function Room() {
                 onSelectRoom={(room_id) => {
                     setSelectedRoom(room_id);
                 }}
+                selectedRoom={selectedRoom}
             />
             {selectedRoom ? (
                 <SelectedRoomContext.Provider value={

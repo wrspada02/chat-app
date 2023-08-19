@@ -8,7 +8,8 @@ export function Sidebar({
     isOpenSidebar, 
     setIsOpenSidebar, 
     rooms,
-    onSelectRoom }: SidebarProps) {
+    onSelectRoom,
+    selectedRoom }: SidebarProps) {
     return (
         <aside className={`${isOpenSidebar ? `mobile:min-w-[100vw]` : `mobile:w-max`} desktop:flex 
         flex-col justify-between align-center bg-[#785BD7] mobile:py-8
@@ -21,12 +22,16 @@ export function Sidebar({
                 {isOpenSidebar ? <BsArrowBarLeft /> : <CgMenuMotion />}
             </button>
             <ul className={`${isOpenSidebar ? `mobile:block` : 
-                `mobile:hidden `}desktop:block flex flex-col gap-5`}>
+                `mobile:hidden `}desktop:block flex flex-col gap-5 mt-5 mb-5`}>
                 {rooms.map((room, index) => (
                     <li onClick={() => {
                         onSelectRoom(room.room_id);
                     }}>
-                        <GroupRoom {...room} key={index} />
+                        <GroupRoom 
+                            room={room}
+                            isActive={room.room_id === selectedRoom} 
+                            key={index} 
+                        />
                     </li>
                 ))}
             </ul>

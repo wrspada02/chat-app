@@ -1,9 +1,9 @@
-import { RoomDto } from "../../interfaces/Room";
+import { GroupRoomProps } from "./@types";
 
-export function GroupRoom(room: RoomDto) {
+export function GroupRoom({ isActive, room}: GroupRoomProps) {
   return (
     <div className="flex flex-col hover:opacity-60 hover:cursor-pointer">
-      <h3 className="font-medium text-white">{room.room_id}</h3>
+      <h3 className={`font-medium text-white ${isActive ? 'bg-[#555555] rounded' : ''}`}>{room.room_id}</h3>
       <p className="font-light">{room.group_people.length} people</p>
     </div>
   );

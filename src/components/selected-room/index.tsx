@@ -7,10 +7,8 @@ import { SelectedRoomProps } from "./@types";
 import { SelectedRoomContext } from "../../context/selectedRoom";
 import { RoomDto } from "../../interfaces/Room";
 import { LoggedUserContext } from "../../context/user";
-import { useNavigate } from "react-router-dom";
 
 export function SelectedRoom({ isOpenSidebar }: SelectedRoomProps) {
-  const navigate = useNavigate();
   const room = useContext<RoomDto | null>(SelectedRoomContext);
   const userAuth = useContext(LoggedUserContext);
 

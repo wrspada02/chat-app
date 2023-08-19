@@ -8,4 +8,5 @@ export interface SidebarProps {
     setIsOpenSidebar: (isOpenSidebar: boolean) => void;
     rooms: RoomDto[];
     onSelectRoom: (room_id: string) => void;
+    selectedRoom: string;
 }

@@ -1,7 +1,7 @@
-import { InputMessageProps } from "./@types";
-
-import SendMessageIcon from "../../assets/send_icon.svg";
 import { useState } from "react";
+
+import { InputMessageProps } from "./@types";
+import SendMessageIcon from "../../assets/send_icon.svg";
 
 export function InputMessage({ placeholder, onSendMessage }: InputMessageProps) {
     const [inputValue, setInputValue] = useState<string>('');
@@ -25,6 +25,7 @@ export function InputMessage({ placeholder, onSendMessage }: InputMessageProps) 
                 alt="Icon to send the message"
                 onClick={() => {
                     onSendMessage(inputValue);
+                    setInputValue('');
                 }}
             />
         </div>
