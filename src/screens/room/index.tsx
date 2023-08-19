@@ -12,9 +12,11 @@ import { HandleRoomModal } from "./@types";
 import { RoomDto } from "../../interfaces/Room";
 import { SelectedRoom } from "../../components/selected-room";
 import { SelectedRoomContext } from "../../context/selectedRoom";
+import { SocketIO } from "../../utils/socket";
 
 export function Room() {
     const navigate = useNavigate();
+    const socket = new SocketIO();
     const userAuth = useContext(LoggedUserContext);
     const [isModalWelcomeOpen, setIsModalWelcomeOpen] = useState<boolean>(true);
     const [roomModal, setRoomModal] = useState<HandleRoomModal>({
@@ -55,6 +57,7 @@ export function Room() {
                     setSelectedRoom(room_id);
                 }}
                 selectedRoom={selectedRoom}
+                key={selectedRoom}
             />
             {selectedRoom ? (
                 <SelectedRoomContext.Provider value={

@@ -18,16 +18,19 @@ export function InputMessage({ placeholder, onSendMessage }: InputMessageProps) 
                     setInputValue(e.target.value);
                 }}
             />
-            <img 
-                src={SendMessageIcon} 
-                className="max-w-[1.5rem] cursor-pointer 
-                    hover:opacity-80 ease-in duration-300" 
-                alt="Icon to send the message"
+            <button 
+                disabled={!inputValue.length} 
                 onClick={() => {
                     onSendMessage(inputValue);
                     setInputValue('');
-                }}
-            />
+            }}>
+                <img 
+                    src={SendMessageIcon} 
+                    className="max-w-[1.5rem] cursor-pointer 
+                        hover:opacity-80 ease-in duration-300" 
+                    alt="Icon to send the message"
+                />
+            </button>
         </div>
     );
 }
