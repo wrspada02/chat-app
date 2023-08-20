@@ -16,7 +16,7 @@ import { io } from "socket.io-client";
 
 export function Room() {
     const navigate = useNavigate();
-    const socket = io("http://localhost:5000");
+    const socket = io("http://localhost:5000", { transports: ['websocket', 'polling'] });
     const userAuth = useContext(LoggedUserContext);
     const [isModalWelcomeOpen, setIsModalWelcomeOpen] = useState<boolean>(true);
     const [roomModal, setRoomModal] = useState<HandleRoomModal>({
@@ -37,12 +37,9 @@ export function Room() {
         }
     }, [userAuth.userLogged?.token]);
 
-    useEffect(() => {
-        getRoomsByUser();
-    }, []);
-
-    useEffect(() => {
+    const handleRoomsWebsocket = useCallback(() => {
         socket.on('add-message-user', (arg: RoomDto) => {
+            console.log(arg);
             const newRooms = roomsByUser.map((room) => {
                 if (room.room_id === arg.room_id) return arg;
 
@@ -51,11 +48,21 @@ export function Room() {
 
             setRoomsByUser(newRooms);
         });
+    }, [setRoomsByUser, roomsByUser]);
+
+    useEffect(() => {
+        if (roomsByUser.length) return;
+        console.log('get-rooms-endpoint-not-websocket')
+        getRoomsByUser();
     }, []);
+
+    useEffect(() => {
+        handleRoomsWebsocket();
+    }, [setRoomsByUser, roomsByUser]);
 
     return(
         <>
-        <main className="flex min-h-screen min-w-screen animate-opacity overflow-hidden">
+        <main className="flex min-h-screen min-w-screen animate-opacity overflow-hidden max-h-screen">
             <Sidebar rooms={roomsByUser} style="tablet:min-h-full tablet:min-w-[20vw] flex-1" 
                 onClickButton={(typeRoom) => {
                     setRoomModal({

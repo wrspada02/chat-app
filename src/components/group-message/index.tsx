@@ -2,7 +2,7 @@ import { GroupMessageProps } from "./@types";
 
 export function GroupMessage({ content, sender }: GroupMessageProps) {
     return (
-        <article className="p-3 flex">
+        <article className="p-3 flex animate-opacity">
             <figure className="flex">
                 <img 
                     src={sender?.avatar_url} 
