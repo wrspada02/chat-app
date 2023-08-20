@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useContext } from "react";
+import { useContext, useEffect, useRef } from "react";
 import { GroupMembersIcon } from "../group-members-icon";
 import { GroupMessage } from "../group-message";
 import { InputMessage } from "../input-message";
@@ -9,6 +9,7 @@ import { RoomDto } from "../../interfaces/Room";
 import { LoggedUserContext } from "../../context/user";
 
 export function SelectedRoom({ isOpenSidebar }: SelectedRoomProps) {
+  const messageSectionRef = useRef<HTMLDivElement | null>(null);
   const room = useContext<RoomDto | null>(SelectedRoomContext);
   const userAuth = useContext(LoggedUserContext);
 
@@ -21,6 +22,11 @@ export function SelectedRoom({ isOpenSidebar }: SelectedRoomProps) {
     } catch (e) {}
   };
 
+  useEffect(() => {
+    messageSectionRef.current?.scrollTo
+    (0, messageSectionRef.current.scrollHeight);
+  }, [room]);
+
   return (
     <section className={`${isOpenSidebar && `mobile:hidden`} flex flex-1 flex-col max-h-[100dvh]`}>
       <header className="bg-[#FCFCFC] flex items-center justify-between p-5">
@@ -28,8 +34,8 @@ export function SelectedRoom({ isOpenSidebar }: SelectedRoomProps) {
           <GroupMembersIcon />
       </header>
       <section className="bg-[#555555] flex flex-1 flex-col justify-end px-5 py-5 overflow-auto">
-          <section className="overflow-auto">
-            {room?.messages.length ? room.messages.map((message, index) => (
+          <section className="overflow-auto" ref={messageSectionRef}>
+            {room?.messages?.length ? room.messages?.map((message, index) => (
               <GroupMessage {...message} key={index} />
             )) : ''}
           </section>

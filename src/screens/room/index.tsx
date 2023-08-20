@@ -37,11 +37,33 @@ export function Room() {
         }
     }, [userAuth.userLogged?.token]);
 
-    const handleRoomsWebsocket = useCallback(() => {
+    const handleMessageWebsocket = useCallback(() => {
         socket.on('add-message-room', (arg: RoomDto) => {
             const newRooms = roomsByUser.map((room): RoomDto => {
                 if (room.room_id === arg.room_id) {
-                    return { ...room, messages: [ ...room.messages, {...arg.messages[0]} ]}
+                    return { ...room, messages: [ ...room.messages, 
+                        {...arg.messages[0]} ]};
+                }
+
+                return room;
+            });
+
+            setRoomsByUser(newRooms);
+        });
+    }, [setRoomsByUser, roomsByUser]);
+
+    const handleRoomsWebsocket = useCallback(() => {
+        socket.on('add-room', (arg: RoomDto) => {
+            setRoomsByUser([...roomsByUser, arg]);
+        });
+    }, [setRoomsByUser, roomsByUser]);
+
+    const handleGroupPeopleWebsocket = useCallback(() => {
+        socket.on('add-person-room', (arg: RoomDto) => {
+            const newRooms = roomsByUser.map((room): RoomDto => {
+                if (room.room_id === arg.room_id) {
+                    return { ...room, group_people: [ ...room.group_people, 
+                        {...arg.group_people[0]} ]};
                 }
 
                 return room;
@@ -57,7 +79,9 @@ export function Room() {
     }, []);
 
     useEffect(() => {
+        handleMessageWebsocket();
         handleRoomsWebsocket();
+        handleGroupPeopleWebsocket();
     }, [setRoomsByUser, roomsByUser]);
 
     return(
