@@ -12,11 +12,11 @@ import { HandleRoomModal } from "./@types";
 import { RoomDto } from "../../interfaces/Room";
 import { SelectedRoom } from "../../components/selected-room";
 import { SelectedRoomContext } from "../../context/selectedRoom";
-import { SocketIO } from "../../utils/socket";
+import { io } from "socket.io-client";
 
 export function Room() {
     const navigate = useNavigate();
-    const socket = new SocketIO();
+    const socket = io("http://localhost:5000");
     const userAuth = useContext(LoggedUserContext);
     const [isModalWelcomeOpen, setIsModalWelcomeOpen] = useState<boolean>(true);
     const [roomModal, setRoomModal] = useState<HandleRoomModal>({
@@ -39,6 +39,18 @@ export function Room() {
 
     useEffect(() => {
         getRoomsByUser();
+    }, []);
+
+    useEffect(() => {
+        socket.on('add-message-user', (arg: RoomDto) => {
+            const newRooms = roomsByUser.map((room) => {
+                if (room.room_id === arg.room_id) return arg;
+
+                return room;
+            });
+
+            setRoomsByUser(newRooms);
+        });
     }, []);
 
     return(

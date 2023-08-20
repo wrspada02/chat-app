@@ -22,13 +22,13 @@ export function SelectedRoom({ isOpenSidebar }: SelectedRoomProps) {
   };
 
   return (
-    <section className={`${isOpenSidebar && `mobile:hidden`} flex flex-1 flex-col`}>
+    <section className={`${isOpenSidebar && `mobile:hidden`} flex flex-1 flex-col max-h-[100dvh]`}>
       <header className="bg-[#FCFCFC] flex items-center justify-between p-5">
           <h2 className="mobile:text-lg tablet:text-lg desktop:text-xl">{room?.room_id}</h2>
           <GroupMembersIcon />
       </header>
       <section className="bg-[#555555] flex flex-1 flex-col justify-end px-5 py-5">
-          <section>
+          <section className="overflow-auto">
             {room?.messages.length ? room.messages.map((message, index) => (
               <GroupMessage {...message} key={index} />
             )) : ''}
