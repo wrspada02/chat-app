@@ -38,10 +38,11 @@ export function Room() {
     }, [userAuth.userLogged?.token]);
 
     const handleRoomsWebsocket = useCallback(() => {
-        socket.on('add-message-user', (arg: RoomDto) => {
-            console.log(arg);
-            const newRooms = roomsByUser.map((room) => {
-                if (room.room_id === arg.room_id) return arg;
+        socket.on('add-message-room', (arg: RoomDto) => {
+            const newRooms = roomsByUser.map((room): RoomDto => {
+                if (room.room_id === arg.room_id) {
+                    return { ...room, messages: [ ...room.messages, {...arg.messages[0]} ]}
+                }
 
                 return room;
             });
@@ -52,7 +53,6 @@ export function Room() {
 
     useEffect(() => {
         if (roomsByUser.length) return;
-        console.log('get-rooms-endpoint-not-websocket')
         getRoomsByUser();
     }, []);
 
