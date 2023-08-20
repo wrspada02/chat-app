@@ -12,7 +12,7 @@ export const roomSchema = z.object({
   room_id: z.string()
   .describe('The name of the room')
   .min(5),
-  room_password: z.string()
+  password: z.string()
   .describe('The password for a private room')
 });
 

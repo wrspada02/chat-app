@@ -8,7 +8,7 @@ export function JoinRoomModal({ typeRoom, handleClose }: JoinRoomModalProps) {
   const [room, setRoom] = useState<Room>({
     is_private: false,
     room_id: '',
-    room_password: '',
+    password: '',
   });
 
   const roomTitles = useMemo(() => {
@@ -88,11 +88,11 @@ export function JoinRoomModal({ typeRoom, handleClose }: JoinRoomModalProps) {
             <div className="flex flex-col">
               <label className="text-[#785BD7] font-semibold">Room Password</label>
               <input type="text" className="shadow-md outline-none p-1 transition-all" 
-                placeholder="Type the password..." value={room?.room_password} 
+                placeholder="Type the password..." value={room?.password} 
                   onChange={(inputValue) => {
                     setRoom({
                       ...room, 
-                      room_password: inputValue.target.value || '',
+                      password: inputValue.target.value || '',
                     });
                   }} disabled={!room.is_private} />
             </div>

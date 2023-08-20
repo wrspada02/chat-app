@@ -22,7 +22,7 @@ export function Sidebar({
                 {isOpenSidebar ? <BsArrowBarLeft /> : <CgMenuMotion />}
             </button>
             <ul className={`${isOpenSidebar ? `mobile:block` : 
-                `mobile:hidden `}desktop:block flex flex-col gap-5 mt-5 mb-5`}>
+                `mobile:hidden `}desktop:block flex flex-col gap-5 mt-5 mb-5 max-h-[60vh] overflow-auto`}>
                 {rooms.map((room, index) => (
                     <li onClick={() => {
                         onSelectRoom(room.room_id);

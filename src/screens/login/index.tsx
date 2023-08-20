@@ -1,6 +1,5 @@
 import { useContext, useEffect } from "react";
 import { GroupMembersIcon } from "../../components/group-members-icon";
-import { GroupMessage } from "../../components/group-message";
 import { LoginButton } from "../../components/login-button";
 import { useNavigate } from "react-router-dom";
 import { LoggedUserContext } from "../../context/user";
