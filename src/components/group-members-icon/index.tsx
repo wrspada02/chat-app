@@ -21,7 +21,7 @@ export function GroupMembersIcon({ isButtonClickable = true }: GroupMembersIconP
             <i className="min-w-[40px] min-h-[40px] w-10 h-10 rounded-full bg-[#555555] 
                 text-white flex justify-center items-center text-sm
                 hover:opacity-80 ease-in duration-300 cursor-pointer"
-                onClick={handleOpenModal}>
+                onClick={handleOpenModal} data-testid="member-icon-info">
                 <span className="m-auto">i</span>
             </i>
 

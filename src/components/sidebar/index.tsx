@@ -22,11 +22,12 @@ export function Sidebar({
                 {isOpenSidebar ? <BsArrowBarLeft /> : <CgMenuMotion />}
             </button>
             <ul className={`${isOpenSidebar ? `mobile:block` : 
-                `mobile:hidden `}desktop:block flex flex-col gap-5 mt-5 mb-5 max-h-[60vh] overflow-auto`}>
+                `mobile:hidden `}desktop:block flex flex-col gap-5 mt-5 mb-5 max-h-[60vh] overflow-auto no-scrollbar`}>
                 {rooms.map((room, index) => (
                     <li onClick={() => {
                         onSelectRoom(room.room_id);
-                    }}>
+                    }}
+                    key={room.room_id}>
                         <GroupRoom 
                             room={room}
                             isActive={room.room_id === selectedRoom} 

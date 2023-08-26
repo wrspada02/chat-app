@@ -11,19 +11,20 @@ export function Modal({ handleCloseModal, isOpenCloseModal }: ModalProps) {
 
     return (
         <section className={`bg-[#785BD7] top-3 p-3 absolute overflow-y-auto
-            rounded-xl shadow-2xl right-3 max-h-[60vh] animate-screen-to-right-negative
-            ${isAnimationCloseOn && `animate-screen-to-right-positive opacity-0`}`}
+            rounded-xl shadow-2xl right-3 max-h-[60vh] animate-group-members 
+            ${isAnimationCloseOn && `animate-opactity opacity-0`}`}
             onAnimationEnd={() => {
                 if (isOpenCloseModal && isAnimationCloseOn) {
                     handleCloseModal();
                 }
-            }}>
+            }} data-test="modal-container-group-members">
             <header>
                 <button onClick={() => {
                     setIsAnimationCloseOn(!isAnimationCloseOn);
                 }} 
                 className={`float-right max-w-[30px] hover:opacity-80 
-                    bg-white p-2 ease-in duration-300 cursor-pointer`}>
+                    bg-white p-2 ease-in duration-300 cursor-pointer`}
+                data-testid="button-close-group-members-icon">
                     <BsArrowBarRight />
                 </button>
             </header>

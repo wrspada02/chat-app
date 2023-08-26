@@ -41,8 +41,8 @@ export function Room() {
         socket.on('add-message-room', (arg: RoomDto) => {
             const newRooms = roomsByUser.map((room): RoomDto => {
                 if (room.room_id === arg.room_id) {
-                    return { ...room, messages: [ ...room.messages, 
-                        {...arg.messages[0]} ]};
+                    return { ...room, messages: room.messages ? 
+                        [...room.messages, arg.messages[0]] : arg.messages};
                 }
 
                 return room;
@@ -50,28 +50,26 @@ export function Room() {
 
             setRoomsByUser(newRooms);
         });
-    }, [setRoomsByUser, roomsByUser]);
+    }, [roomsByUser]);
 
     const handleRoomsWebsocket = useCallback(() => {
         socket.on('add-room', (arg: RoomDto) => {
-            setRoomsByUser([...roomsByUser, arg]);
+            const newRooms = [...roomsByUser, arg];
+            setRoomsByUser(newRooms);
         });
-    }, [setRoomsByUser, roomsByUser]);
+    }, [roomsByUser]);
 
     const handleGroupPeopleWebsocket = useCallback(() => {
         socket.on('add-person-room', (arg: RoomDto) => {
             const newRooms = roomsByUser.map((room): RoomDto => {
-                if (room.room_id === arg.room_id) {
-                    return { ...room, group_people: [ ...room.group_people, 
-                        {...arg.group_people[0]} ]};
-                }
+                if (room.room_id === arg.room_id) return arg;
 
                 return room;
             });
 
             setRoomsByUser(newRooms);
         });
-    }, [setRoomsByUser, roomsByUser]);
+    }, [roomsByUser]);
 
     useEffect(() => {
         if (roomsByUser.length) return;
@@ -82,7 +80,7 @@ export function Room() {
         handleMessageWebsocket();
         handleRoomsWebsocket();
         handleGroupPeopleWebsocket();
-    }, [setRoomsByUser, roomsByUser]);
+    }, [roomsByUser]);
 
     return(
         <>
