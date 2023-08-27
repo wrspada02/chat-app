@@ -22,7 +22,7 @@ export function WelcomeModal({ handleClose }: WelcomeModalProps): JSX.Element {
   return(
     <section className="top-0 left-0 absolute bg-black opacity-80
        w-[100vw] h-[100vh] flex justify-center align-center">
-      <article className="p-10 bg-[url('/src/assets/bg-confetti.avif')]
+      <article className="p-10 bg-[url('./src/assets/bg-confetti.avif')]
        bg-no-repeat rounded-lg bg-cover backdrop-blur-sm m-auto desktop:flex 
        desktop:justify-around desktop:align-center animate-pulse
        mobile:flex mobile:flex-col mobile:justify-center mobile:align-center">

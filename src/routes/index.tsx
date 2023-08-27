@@ -6,15 +6,15 @@ import { CreatingUser } from '../screens/creating-user';
 
 export const router = createHashRouter([
   {
-    path: "/",
+    path: "./",
     element: <Login />,
   },
   {
-    path: "/room",
+    path: "./room",
     element: <Room />,
   },
   {
-    path: '/user/creating',
+    path: './user/creating',
     element: <CreatingUser />,
   },
   {

@@ -8,12 +8,12 @@ export function NotFound() {
   const userAuth = useContext(LoggedUserContext);
 
   const handleNavigateToPreviousPage = () => {
-    navigate("/");
+    navigate("./");
   }
 
   useEffect(() => {
     if (!userAuth.userLogged) return; 
-    navigate("/room");
+    navigate("./room");
   }, [userAuth.userLogged?.user]);
 
   return ( 

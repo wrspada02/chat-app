@@ -33,7 +33,7 @@ export function Room() {
 
             setRoomsByUser(rooms.data);
         } catch (e) {
-            navigate("/");
+            navigate("./");
         }
     }, [userAuth.userLogged?.token]);
 
