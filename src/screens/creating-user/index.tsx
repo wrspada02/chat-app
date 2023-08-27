@@ -20,7 +20,7 @@ export function CreatingUser() {
       if (user.data) {
         userAuth.login(user.data);
       } else {
-        navigate("./");
+        navigate("/");
       }
   }, []);
 
@@ -29,7 +29,7 @@ export function CreatingUser() {
   }, []);
 
   useEffect(() => {
-    navigate("./room");
+    navigate("/room");
   }, [userAuth.userLogged?.user]);
 
   return (

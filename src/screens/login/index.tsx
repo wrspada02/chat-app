@@ -10,7 +10,7 @@ export function Login() {
 
     useEffect(() => {
         if (!userAuth.userLogged) return;
-        navigate("./room");
+        navigate("/room");
     }, [userAuth.userLogged?.user]);
       
     return (
