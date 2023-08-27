@@ -9,7 +9,7 @@ import { LoggedUserResponse } from './screens/creating-user/@types';
 
 export function App() {
     const [userLogged, dispatch] = useReducer(userReducer, null);
-    
+
     const userValues: UserActionsReducer = {
         userLogged,
         login: (user: LoggedUserResponse) => {
