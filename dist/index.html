@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Talk with your friend in real time and enjoy">
+    <link rel="icon" type="image/x-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAACXBIWXMAAAsTAAALEwEAmpwYAAAEEElEQVR4nO2aS2hcZRiG/411Yyt26aUwl3QuyWhveAlRqxYvVNQSUrxg0cQkiHXhQlBM0EVtEiy46EJQEHQhGNrJDG1qgp04ybQ5Z5HowgptgriwydKFdGfgkW+Yo/HY/PP7nzmVE84DzyLn++c773smGQKJUjExMTExMTExPvI9bMkOMJYbZDU3CJFwgJXcIKOSXQWl0M9ooR8i6WuMBH4Au/pY2d0Hu/rpVBFh76t01TP3sRJ42b5eEFXEaFnu+18BUUWMluXuOgKiihgty73/ZRBVxGhZ7gMvgagiRstyP/ECiLqZrd6e9+fID9Vwh2usDdfA0LXhOZyhKjmT3LoeWg4+D6JuZqu359gs7odzYOUsjkluXQ8tzx4GUYXIR1XWTlTBRnmtSW7rHt09IKoQOTkDQTTJbd3jcDeIupmt3p5PKxBEk9y6HlpePASibmart+eLbyGIJrl1PbQceQ5EFSJfT0MQTXJb9+h9BkQVIqUpCKJJbuseA0+DqJvZ6u355hwE0SS3roeW1w+CqJvZ6u2ZOQtBNMmt66HlzadAVCFy8QwE0SS3dY+3ngRRhchimbXFMlhZ4g+T3NY93n4cRN3MVm/PjxM4lybAyiIXTXLremh59wCIupmt3p4rRXLLRZylImvLRTBRzi6dZv7yKbImuXU9tAw9BqKKGP7c1j0+eAREFTH8ua17HHsYRN3MVtM9zc6Z5Nad1TL6EIi6ma2me5qdM8mtO6vlRBeIKmL4c1v3+LgTRBUx/Lmte5x8AETdzFbTPc3OmeTWndXyyX0g6ma2mu5pds4kt+6sls/uBVFFDH9u6x6f7wNRRQx/buseX+4BUUUMf27rHl/tBlFFDH9u6x7j94CoIoY/t3WP0x2sFAtQvJsuFREmCjxYz9zBVe9a/euCxQMotzNS7oCNLLVzrdyBW+7g6Hje7H9ydPtaaamd4/57/ucHMJ5ny2SOkck8K5N50JrjhzNt3KHbV8qwteme4F49m+P4+jfEm6lWU8qwdTrLoeksl6ezMJXhe913wtROsnJuOsOyuoHU75kN8bNsKs/28xl+rWTg/E7e2OjcTJYBOVPJMK5uEJUMnY1cq6HeqJqmZ7YNZtuu/yfrxpmKnKmm6V1/vfG6sB0L9QG4abZdSEMtxe/Xm9dS7Pfm3+W5Zf1MrodmitVairFzaW4O9QEsJLnVTYKb+PcDqO3gNifBzzJ3kryjNiNOgu5GwX/8CMzfyXY3Sa3xcBYX9nKT2mzMS8kES42SR73rbpJH/7qe5JcLd3G72ky4abbV3/lGSSfBT/Mp9rgJ+pwEM43ioruQZIfabLh/F9zI35wE710y/C0xcri+wk6Sa06SK26SU26CXvlg/L8zxsTExMTExMQoDX8CEl37NTbXXzcAAAAASUVORK5CYII=">
+    <link href="./dist/output.css" rel="stylesheet">
+    <title>Chat App</title>
+    <style>
+      .loader-2 {
+        display: block;
+        height: 70px;
+        width: 70px;
+        animation: loader-2-1 3s linear infinite;
+    }
+
+    .loader-2 span {
+        display: block;
+        position: absolute;
+        top: 0; left: 0;
+        bottom: 0; right: 0;
+        margin: auto;
+        height: 70px;
+        width: 70px;
+        clip: rect(16px, 32px, 32px, 0);
+        animation: loader-2-2 1.5s cubic-bezier(0.770, 0.000, 0.175, 1.000) infinite;
+    }
+    @keyframes loader-2-1 {
+        0%   { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+
+    .loader-2 span {
+        display: block;
+        position: absolute;
+        top: 0; left: 0;
+        bottom: 0; right: 0;
+        margin: auto;
+        height: 70px;
+        width: 70px;
+        clip: rect(16px, 32px, 32px, 0);
+        animation: loader-2-2 1.5s cubic-bezier(0.770, 0.000, 0.175, 1.000) infinite;
+    }
+    @keyframes loader-2-2 {
+        0%   { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+    .loader-2 span::before {
+        content: "";
+        display: block;
+        position: absolute;
+        top: 0; left: 0;
+        bottom: 0; right: 0;
+        margin: auto;
+        height: 70px;
+        width: 70px;
+        border: 3px solid transparent;
+        border-top: 3px solid #FFF;
+        border-radius: 50%;
+        animation: loader-2-3 1.5s cubic-bezier(0.770, 0.000, 0.175, 1.000) infinite;
+    }
+    @keyframes loader-2-3 {
+        0%   { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+
+    .loader-2 span::after {
+        content: "";
+        display: block;
+        position: absolute;
+        top: 0; left: 0;
+        bottom: 0; right: 0;
+        margin: auto;
+        height: 70px;
+        width: 70px;
+        border: 3px solid rgba(255, 255, 255, .5);
+        border-radius: 50%;
+    }
+
+        /* Chrome, Safari and Opera */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+
+    .no-scrollbar {
+      -ms-overflow-style: none; /* IE and Edge */
+      scrollbar-width: none; /* Firefox */
+    }
+    </style>
+    <script type="module" crossorigin src="/assets/index-2df1a544.js"></script>
+    <link rel="stylesheet" href="/assets/index-d536baac.css">
+  </head>
+  <body>
+    <div id="root"></div>
+    
+  </body>
+</html>
