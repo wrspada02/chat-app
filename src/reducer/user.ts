@@ -1,6 +1,7 @@
 import { User, UserActions, UserType } from "../interfaces/User";
+import { LoggedUserResponse } from "../screens/creating-user/@types";
 
-export const userReducer = (state: User | null, action: UserType) => {
+export const userReducer = (state: LoggedUserResponse | null, action: UserType) => {
   switch (action.type) {
       case UserActions.LOGOUT:
           return action.payload;

@@ -14,7 +14,7 @@ export enum UserActions {
 
 export interface UserType {
   type: UserActions;
-  payload: User | null;
+  payload: LoggedUserResponse | null;
 }
 
 export interface UserActionsReducer {

@@ -5,12 +5,14 @@ import { useReducer } from 'react';
 import { User, UserActions, UserActionsReducer } from './interfaces/User';
 import { userReducer } from './reducer/user';
 import { LoggedUserContext } from './context/user';
+import { LoggedUserResponse } from './screens/creating-user/@types';
 
 export function App() {
     const [userLogged, dispatch] = useReducer(userReducer, null);
+    
     const userValues: UserActionsReducer = {
         userLogged,
-        login: (user: User) => {
+        login: (user: LoggedUserResponse) => {
             dispatch({ type: UserActions.LOGOUT, payload: user });
         },
         logout: () => {

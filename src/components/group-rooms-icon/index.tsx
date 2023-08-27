@@ -18,9 +18,8 @@ const handleCloseModal = useCallback(() => {
                 onClick={() => setIsGroupMembersModalActive(true)} />
 
             {isGroupMembersModalActive && (
-                <Modal 
-                    closeModalPosition="float-left" 
-                    style="left-2" 
+                <Modal
+                    isOpenCloseModal={isGroupMembersModalActive}
                     handleCloseModal={handleCloseModal} 
                 />
             )}
