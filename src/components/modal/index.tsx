@@ -29,7 +29,7 @@ export function Modal({ handleCloseModal, isOpenCloseModal }: ModalProps) {
                 </button>
             </header>
             <article className="flex flex-col gap-1 mt-3">
-                {room?.group_people.map((person, index) => (
+                {room?.group_people?.map((person, index) => (
                     <GroupMessage content={''} sender={person} key={index} />
                 ))}
             </article>
